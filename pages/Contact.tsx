@@ -1,0 +1,182 @@
+import React, { useState } from 'react';
+import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import toast from 'react-hot-toast';
+import { useLanguage } from '../context/LanguageContext';
+import { usePageMeta } from '../hooks/usePageMeta';
+
+
+const Contact: React.FC = () => {
+    const { t } = useLanguage();
+    usePageMeta({ title: 'Contact Us' });
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+    });
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        // In a real implementation, this would send to a backend endpoint
+        toast.success(t('contact.successMsg'));
+        setFormData({ name: '', email: '', subject: '', message: '' });
+    };
+
+    return (
+        <div className="bg-sand min-h-screen">
+            {/* Hero Section */}
+            <section className="bg-sage/10 py-12 px-6">
+                <div className="container mx-auto max-w-4xl text-center">
+                    <h1 className="text-5xl md:text-6xl font-serif text-primary mb-6">
+                        {t('contact.heroTitle')}
+                    </h1>
+                    <p className="text-lg text-primary/70">
+                        {t('contact.heroSubtitle')}
+                    </p>
+                </div>
+            </section>
+
+            {/* Contact Content */}
+            <section className="py-20 px-6">
+                <div className="container mx-auto max-w-6xl">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        {/* Contact Form */}
+                        <div className="bg-white p-8 md:p-12 rounded-lg shadow-sm">
+                            <h2 className="text-3xl font-serif text-primary mb-6">{t('contact.sendAMessage')}</h2>
+                            <form onSubmit={handleSubmit} className="space-y-6">
+                                <div>
+                                    <label className="block text-sm font-medium text-primary mb-2">
+                                        {t('contact.yourName')} *
+                                    </label>
+                                    <input
+                                        type="text"
+                                        required
+                                        value={formData.name}
+                                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                        className="w-full px-4 py-3 border border-stone-200 rounded focus:outline-none focus:ring-2 focus:ring-sage"
+                                        placeholder={t('contact.namePlaceholder')}
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-primary mb-2">
+                                        {t('auth.emailAddress')} *
+                                    </label>
+                                    <input
+                                        type="email"
+                                        required
+                                        value={formData.email}
+                                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                        className="w-full px-4 py-3 border border-stone-200 rounded focus:outline-none focus:ring-2 focus:ring-sage"
+                                        placeholder={t('auth.emailPlaceholder')}
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-primary mb-2">
+                                        {t('contact.subject')} *
+                                    </label>
+                                    <input
+                                        type="text"
+                                        required
+                                        value={formData.subject}
+                                        onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                                        className="w-full px-4 py-3 border border-stone-200 rounded focus:outline-none focus:ring-2 focus:ring-sage"
+                                        placeholder={t('contact.subjectPlaceholder')}
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-primary mb-2">
+                                        {t('contact.message')} *
+                                    </label>
+                                    <textarea
+                                        required
+                                        rows={6}
+                                        value={formData.message}
+                                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                                        className="w-full px-4 py-3 border border-stone-200 rounded focus:outline-none focus:ring-2 focus:ring-sage resize-none"
+                                        placeholder={t('contact.messagePlaceholder')}
+                                    ></textarea>
+                                </div>
+                                <button
+                                    type="submit"
+                                    className="w-full bg-primary text-white px-8 py-4 text-sm uppercase tracking-widest font-bold hover:bg-sage transition-colors flex items-center justify-center gap-2"
+                                >
+                                    <Send className="w-4 h-4" />
+                                    {t('contact.sendMessage')}
+                                </button>
+                            </form>
+                        </div>
+
+                        {/* Contact Information */}
+                        <div className="space-y-8">
+                            <div>
+                                <h2 className="text-3xl font-serif text-primary mb-6">{t('contact.contactInfo')}</h2>
+                                <p className="text-primary/70 leading-relaxed mb-8">
+                                    {t('contact.contactInfoDesc')}
+                                </p>
+                            </div>
+
+                            <div className="space-y-6">
+                                <div className="flex items-start gap-4">
+                                    <div className="w-12 h-12 bg-sage/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <Mail className="w-5 h-5 text-sage" />
+                                    </div>
+                                    <div>
+                                        <h3 className="font-serif font-medium text-primary mb-1">{t('contact.email')}</h3>
+                                        <p className="text-primary/70">support@walltimearts.com</p>
+                                        <p className="text-sm text-primary/50 mt-1">{t('contact.responseTime')}</p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start gap-4">
+                                    <div className="w-12 h-12 bg-sage/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <Phone className="w-5 h-5 text-sage" />
+                                    </div>
+                                    <div>
+                                        <h3 className="font-serif font-medium text-primary mb-1">{t('contact.phone')}</h3>
+                                        <p className="text-primary/70">+1 (555) 123-4567</p>
+                                        <p className="text-sm text-primary/50 mt-1">{t('contact.phoneHours')}</p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start gap-4">
+                                    <div className="w-12 h-12 bg-sage/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <MapPin className="w-5 h-5 text-sage" />
+                                    </div>
+                                    <div>
+                                        <h3 className="font-serif font-medium text-primary mb-1">{t('contact.address')}</h3>
+                                        <p className="text-primary/70">
+                                            123 Sustainable Street<br />
+                                            San Francisco, CA 94102<br />
+                                            United States
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Business Hours */}
+                            <div className="bg-sage/10 p-6 rounded-lg mt-8">
+                                <h3 className="font-serif font-medium text-primary mb-4">{t('contact.businessHours')}</h3>
+                                <div className="space-y-2 text-sm">
+                                    <div className="flex justify-between">
+                                        <span className="text-primary/70">{t('contact.monFri')}</span>
+                                        <span className="text-primary font-medium">9:00 AM - 6:00 PM</span>
+                                    </div>
+                                    <div className="flex justify-between">
+                                        <span className="text-primary/70">{t('contact.sat')}</span>
+                                        <span className="text-primary font-medium">10:00 AM - 4:00 PM</span>
+                                    </div>
+                                    <div className="flex justify-between">
+                                        <span className="text-primary/70">{t('contact.sun')}</span>
+                                        <span className="text-primary font-medium">{t('contact.closed')}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    );
+};
+
+export default Contact;
