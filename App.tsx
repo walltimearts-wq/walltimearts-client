@@ -8,6 +8,7 @@ import CartSidebar from './components/cart/CartSidebar';
 import { CartProvider, useCart } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
 import { LanguageProvider } from './context/LanguageContext';
+import { ThemeProvider } from './context/ThemeContext';
 import { SiteSettingsProvider } from './context/SiteSettingsContext';
 
 // --- Lazy-loaded pages for code splitting (faster initial load) ---
@@ -45,6 +46,7 @@ const TestimonialManagement = lazy(() => import('./pages/admin/TestimonialManage
 const ReturnManagement = lazy(() => import('./pages/admin/ReturnManagement'));
 const SettingsOverview = lazy(() => import('./pages/admin/SettingsOverview'));
 const ShippingSettings = lazy(() => import('./pages/admin/ShippingSettings'));
+const ThemeSettings = lazy(() => import('./pages/admin/ThemeSettings'));
 const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
 
 import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -122,6 +124,7 @@ const AppContent = () => {
                 <Route path="/admin/orders" element={<OrderManagement />} />
                 <Route path="/admin/returns" element={<ReturnManagement />} />
                 <Route path="/admin/settings" element={<SettingsOverview />} />
+                <Route path="/admin/theme" element={<ThemeSettings />} />
                 <Route path="/admin/users" element={<UserManagement />} />
                 <Route path="/admin/categories" element={<CategoryManagement />} />
                 <Route path="/admin/reviews" element={<ReviewManagement />} />
@@ -144,7 +147,8 @@ const App = () => {
   return (
     <Router>
       <LanguageProvider>
-        <SiteSettingsProvider>
+        <ThemeProvider>
+          <SiteSettingsProvider>
           <AuthProvider>
             <CartProvider>
               <Toaster position="bottom-right" reverseOrder={false} />
@@ -152,6 +156,7 @@ const App = () => {
             </CartProvider>
           </AuthProvider>
         </SiteSettingsProvider>
+        </ThemeProvider>
       </LanguageProvider>
     </Router>
   );

@@ -295,7 +295,7 @@ const Home: React.FC = () => {
     fetchData();
   }, []);
 
-  if (loading) return <Loader fullPage color="#2B2118" />;
+  if (loading) return <Loader fullPage color="rgb(var(--c-primary))" />;
 
   return (
     <div className="bg-sand text-primary">

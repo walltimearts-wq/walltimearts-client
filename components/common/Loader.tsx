@@ -19,6 +19,11 @@ const Loader: React.FC<LoaderProps> = ({
         xl: 'h-20 w-20'
     };
 
+    // Hex colors get an 8-digit alpha suffix; CSS variables get an /alpha modifier
+    const trackColor = color.includes('var(')
+        ? color.replace(/\)\s*$/, ' / 0.2)')
+        : `${color}20`;
+
     const loaderContent = (
         <div className={`relative ${sizes[size]}`}>
             <motion.span
@@ -29,7 +34,7 @@ const Loader: React.FC<LoaderProps> = ({
                     repeat: Infinity,
                     ease: "linear"
                 }}
-                style={{ borderColor: `${color}20`, borderTopColor: color }}
+                style={{ borderColor: trackColor, borderTopColor: color }}
             />
         </div>
     );

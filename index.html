@@ -36,17 +36,20 @@
       theme: {
         extend: {
           colors: {
-            primary: '#2B2118', // Espresso charcoal
-            secondary: '#A9947A', // Aged brass taupe
-            accent: '#B7873F', // Antique brass
-            sand: '#F7F1E8', // Warm ivory
-            stone: '#E8DDCF', // Parchment beige
-            sage: '#9C6B30', // Burnished brass
-            earth: '#5B3C27', // Walnut brown
+            // Theme-aware tokens: these CSS variables are overridden at runtime
+            // by ThemeContext when the admin applies a store theme.
+            // Format: "R G B" triplets so Tailwind alpha modifiers (/70, /10…) keep working.
+            primary: 'rgb(var(--c-primary) / <alpha-value>)',
+            secondary: 'rgb(var(--c-secondary) / <alpha-value>)',
+            accent: 'rgb(var(--c-accent) / <alpha-value>)',
+            sand: 'rgb(var(--c-sand) / <alpha-value>)',
+            stone: 'rgb(var(--c-stone) / <alpha-value>)',
+            sage: 'rgb(var(--c-sage) / <alpha-value>)',
+            earth: 'rgb(var(--c-earth) / <alpha-value>)',
           },
           fontFamily: {
-            sans: ['Manrope', 'ui-sans-serif', 'system-ui', 'Arial', 'sans-serif'],
-            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['var(--font-body)'],
+            serif: ['var(--font-heading)'],
           },
         }
       }
@@ -55,12 +58,44 @@
 
   <style>
     :root {
-      --bg: #F7F1E8;
-      --text: #2B2118;
+      /* ---- Store theme variables (overridden at runtime by ThemeContext) ---- */
+      /* Tailwind color tokens as "R G B" triplets (#2B2118, #A9947A, #B7873F, #F7F1E8, #E8DDCF, #9C6B30, #5B3C27) */
+      --c-primary: 43 33 24;
+      --c-secondary: 169 148 122;
+      --c-accent: 183 135 63;
+      --c-sand: 247 241 232;
+      --c-stone: 232 221 207;
+      --c-sage: 156 107 48;
+      --c-earth: 91 60 39;
+
+      /* Hex mirrors + extras for plain CSS and inline styles */
+      --color-primary: #2B2118;
+      --color-secondary: #A9947A;
+      --color-accent: #B7873F;
+      --color-background: #F7F1E8;
+      --color-surface: #FFFFFF;
+      --color-border: #E8DDCF;
+      --color-text: #2B2118;
+      --color-text-muted: #7A6A58;
+      --color-success: #2E7D32;
+      --color-danger: #C0392B;
+      --color-sage: #9C6B30;
+      --color-earth: #5B3C27;
+
+      /* Typography */
+      --font-body: 'Manrope', Arial, Helvetica, sans-serif;
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-size-base: 16px;
+      --radius-base: 8px;
+
+      /* Legacy aliases (kept for existing styles) */
+      --bg: var(--color-background);
+      --text: var(--color-text);
     }
 
     body {
-      font-family: 'Manrope', Arial, Helvetica, sans-serif;
+      font-family: var(--font-body);
+      font-size: var(--font-size-base);
       background-color: var(--bg);
       color: var(--text);
       overflow-x: hidden;
@@ -73,7 +108,7 @@
     h4,
     h5,
     h6 {
-      font-family: 'Playfair Display', Georgia, serif;
+      font-family: var(--font-heading);
     }
 
     /* Soft Fade In */
@@ -104,7 +139,7 @@
     }
 
     ::selection {
-      background: #9C6B30;
+      background: rgb(var(--c-sage));
       color: #fff;
     }
 
@@ -117,8 +152,7 @@
     input[type="search"],
     textarea,
     select {
-      border: 1px solid #A9947A !important;
-      /* secondary grey */
+      border: 1px solid rgb(var(--c-secondary)) !important;
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
@@ -130,9 +164,8 @@
     input[type="search"]:focus,
     textarea:focus,
     select:focus {
-      border-color: #9C6B30 !important;
-      /* sage */
-      box-shadow: 0 0 0 2px rgba(143, 151, 121, 0.2) !important;
+      border-color: rgb(var(--c-sage)) !important;
+      box-shadow: 0 0 0 2px rgb(var(--c-sage) / 0.2) !important;
       outline: none !important;
     }
   </style>

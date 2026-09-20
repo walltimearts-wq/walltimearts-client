@@ -15,7 +15,8 @@ import {
     RotateCcw,
     CreditCard,
     Settings,
-    Truck
+    Truck,
+    Palette
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useSiteSettings } from '../../context/SiteSettingsContext';
@@ -35,6 +36,7 @@ const AdminSidebar: React.FC = () => {
         { title: 'Reviews', path: '/admin/reviews', icon: MessageSquare },
         { title: 'Testimonials', path: '/admin/testimonials', icon: MessageCircle },
         { title: 'Shipping Settings', path: '/admin/shipping', icon: Truck },
+        { title: 'Store Theme', path: '/admin/theme', icon: Palette },
         { title: 'Payment Methods', path: '/admin/settings?tab=payments', icon: CreditCard },
         { title: 'Settings', path: '/admin/settings', icon: Settings },
         { title: 'Wishlist', path: '/admin/wishlist', icon: Heart },

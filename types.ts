@@ -128,3 +128,41 @@ export interface GatewaySetting {
   livePublishableKey?: string;
 }
 
+/* ---------- Store theme (Admin → Settings → Store Theme) ---------- */
+
+export interface ThemeColors {
+  primary: string;
+  primaryDark: string;
+  secondary: string;
+  accent: string;
+  background: string;
+  surface: string;
+  border: string;
+  text: string;
+  textMuted: string;
+  success: string;
+  danger: string;
+  sage: string;
+  earth: string;
+}
+
+export interface ThemeTypography {
+  fontFamily: string;
+  headingFont: string;
+  baseFontSize: string;
+  borderRadius: string;
+}
+
+export interface StoreTheme {
+  preset: string;
+  isCustom: boolean;
+  colors: ThemeColors;
+  typography: ThemeTypography;
+}
+
+export interface ThemePreset {
+  name: string;
+  colors: ThemeColors;
+  typography: ThemeTypography;
+}
+

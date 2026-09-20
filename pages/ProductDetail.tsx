@@ -86,7 +86,7 @@ const ProductDetail: React.FC = () => {
     fetchProductData();
   }, [id]);
 
-  if (loading) return <Loader fullPage color="#2B2118" />;
+  if (loading) return <Loader fullPage color="rgb(var(--c-primary))" />;
 
   if (error || !product) return (
     <div className="min-h-screen bg-[#eff0f5] py-4 font-sans text-[#212121]">

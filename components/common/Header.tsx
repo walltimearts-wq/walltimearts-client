@@ -328,7 +328,7 @@ const Header: React.FC<{ onCartOpen: () => void }> = ({ onCartOpen }) => {
                 <div className="max-h-[400px] overflow-y-auto border-b border-gray-100">
                   {isSearching ? (
                     <div className="p-12 flex flex-col items-center justify-center text-gray-400">
-                      <Loader size="md" color="#2B2118" />
+                      <Loader size="md" color="rgb(var(--c-primary))" />
                       <p className="mt-4 text-sm font-medium animate-pulse uppercase tracking-widest">Scanning inventory...</p>
                     </div>
                   ) : suggestions.length > 0 ? (

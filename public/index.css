@@ -93,20 +93,20 @@ html.lenis body {
   }
 }
 
-/* ---------- Subtle custom scrollbar ---------- */
+/* ---------- Subtle custom scrollbar (theme-aware) ---------- */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #F7F1E8;
+  background: rgb(var(--c-sand));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #CBBBA8;
+  background: rgb(var(--c-secondary));
   border-radius: 8px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #9C6B30;
+  background: rgb(var(--c-sage));
 }

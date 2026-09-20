@@ -57,7 +57,7 @@ const ProductListing: React.FC = () => {
   const normalizedProducts = products.map(normalizeProduct);
 
 
-  if (loading) return <Loader fullPage color="#2B2118" />;
+  if (loading) return <Loader fullPage color="rgb(var(--c-primary))" />;
 
   if (error) {
     return (

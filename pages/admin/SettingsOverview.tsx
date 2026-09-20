@@ -11,25 +11,28 @@ import {
     ArrowLeft,
     Monitor,
     Zap,
-    LayoutTemplate
+    LayoutTemplate,
+    Palette
 } from 'lucide-react';
 import PaymentSettings from './PaymentSettings';
 import ContentManagement from './ContentManagement';
+import ThemeSettings from './ThemeSettings';
 
 const SettingsOverview: React.FC = () => {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const tabParam = queryParams.get('tab') as any;
 
-    const [activeTab, setActiveTab] = useState<'general' | 'payments' | 'flash' | 'footer' | 'hero'>('general');
+    const [activeTab, setActiveTab] = useState<'general' | 'payments' | 'flash' | 'footer' | 'hero' | 'theme'>('general');
 
     useEffect(() => {
-        if (tabParam && ['general', 'payments', 'flash', 'footer', 'hero'].includes(tabParam)) {
+        if (tabParam && ['general', 'payments', 'flash', 'footer', 'hero', 'theme'].includes(tabParam)) {
             setActiveTab(tabParam);
         }
     }, [tabParam]);
 
     const tabs = [
+        { id: 'theme', label: 'Store Theme', icon: Palette, description: 'Theme colors and fonts applied across the whole store.' },
         { id: 'general', label: 'General Settings', icon: Globe, description: 'Site identity, SEO keywords, and global meta-data.' },
         { id: 'hero', label: 'Hero Content', icon: Layout, description: 'Manage home page slides, headings, and images.' },
         { id: 'payments', label: 'Payment Methods', icon: CreditCard, description: 'Payment gateways, PayPal keys, and COD management.' },
@@ -84,6 +87,13 @@ const SettingsOverview: React.FC = () => {
                 {/* Content Area */}
                 <div className="flex-1 min-w-0">
                     <div className="animate-in fade-in slide-in-from-right-4 duration-700">
+                        {activeTab === 'theme' && (
+                            <div className="bg-white rounded-[3rem] border border-slate-100 shadow-sm overflow-hidden">
+                                <div className="p-10">
+                                    <ThemeSettings isEmbedded={true} />
+                                </div>
+                            </div>
+                        )}
                         {activeTab === 'general' && (
                             <div className="bg-white rounded-[3rem] border border-slate-100 shadow-sm overflow-hidden">
                                 <div className="p-10">
