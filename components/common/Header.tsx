@@ -230,6 +230,7 @@ const Header: React.FC<{ onCartOpen: () => void }> = ({ onCartOpen }) => {
 
               <Link to="/products" className={linkClass}>{t('nav.shopAll')}</Link>
               <Link to="/about" className={linkClass}>{t('nav.ourStory')}</Link>
+              <Link to="/contact" className={linkClass}>{t('nav.contact')}</Link>
 
 
             </nav>
@@ -422,6 +423,7 @@ const Header: React.FC<{ onCartOpen: () => void }> = ({ onCartOpen }) => {
             <Link to="/" className="text-xl sm:text-2xl font-serif text-primary hover:text-sage transition-colors" onClick={() => setMobileMenuOpen(false)}>{t('nav.home')}</Link>
             <Link to="/products" className="text-xl sm:text-2xl font-serif text-primary hover:text-sage transition-colors" onClick={() => setMobileMenuOpen(false)}>{t('nav.shopAll')}</Link>
             <Link to="/about" className="text-xl sm:text-2xl font-serif text-primary hover:text-sage transition-colors" onClick={() => setMobileMenuOpen(false)}>{t('nav.ourStory')}</Link>
+            <Link to="/contact" className="text-xl sm:text-2xl font-serif text-primary hover:text-sage transition-colors" onClick={() => setMobileMenuOpen(false)}>{t('nav.contact')}</Link>
 
             {/* Categories Dropdown */}
             <div className="flex flex-col">
