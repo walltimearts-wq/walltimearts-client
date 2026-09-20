@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
+import { useSiteSettings } from '../../context/SiteSettingsContext';
 
 const WHATSAPP_NUMBER = '923229811525';
 
 const WhatsAppButton: React.FC = () => {
   const [visible, setVisible] = useState(true);
+  const { siteSettings } = useSiteSettings();
 
-  const handleClick = () => {
-    window.open(
-      `https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20need%20help%20with%20an%20order.`,
-      '_blank',
-      'noopener,noreferrer',
-    );
-  };
+  const whatsappMessage = encodeURIComponent(
+    `Hello ${siteSettings.siteName} team,\n\nI need some assistance with my order. Could you please help me?\n\nThank you!`
+  );
+
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`;
 
   return (
     <div
@@ -21,10 +21,9 @@ const WhatsAppButton: React.FC = () => {
     >
       {/* WhatsApp icon */}
       <a
-        href={`https://wa.me/${WHATSAPP_NUMBER}`}
+        href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        onClick={handleClick}
         className="flex items-center gap-2 group"
       >
         <svg
