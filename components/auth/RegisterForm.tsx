@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import { X, Mail, Lock, Eye, EyeOff, CheckCircle, User } from 'lucide-react';
+import { X, Mail, Lock, Eye, EyeOff, User } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
 
 
@@ -15,9 +15,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ onClose, onSwitchToL
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
-    const [showConfirm, setShowConfirm] = useState(false);
     const [localError, setLocalError] = useState('');
     const [success, setSuccess] = useState(false);
     const [registeredEmail, setRegisteredEmail] = useState('');
@@ -26,10 +24,6 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ onClose, onSwitchToL
         e.preventDefault();
         setLocalError('');
 
-        if (password !== confirmPassword) {
-            setLocalError(t('auth.passwordsDoNotMatch'));
-            return;
-        }
         if (password.length < 6) {
             setLocalError(t('auth.passwordTooShort'));
             return;
@@ -150,31 +144,6 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ onClose, onSwitchToL
                                 className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
                                 {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                             </button>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1.5">{t('auth.confirmPassword') || 'Confirm Password'}</label>
-                        <div className="relative">
-                            <Lock size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
-                            <input
-                                type={showConfirm ? 'text' : 'password'}
-                                value={confirmPassword}
-                                onChange={(e) => setConfirmPassword(e.target.value)}
-                                className="w-full pl-10 pr-10 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all text-sm"
-                                placeholder={t('auth.passwordPlaceholder')}
-                                required
-                                disabled={loading}
-                            />
-                            <button type="button" onClick={() => setShowConfirm(!showConfirm)}
-                                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
-                                {showConfirm ? <EyeOff size={16} /> : <Eye size={16} />}
-                            </button>
-                            {confirmPassword && (
-                                <span className="absolute right-10 top-1/2 -translate-y-1/2">
-                                    <CheckCircle size={16} className={password === confirmPassword ? 'text-green-500' : 'text-red-400'} />
-                                </span>
-                            )}
                         </div>
                     </div>
 
