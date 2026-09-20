@@ -15,10 +15,9 @@ const WhatsAppButton: React.FC = () => {
 
   return (
     <div
-      className={`fixed left-4 bottom-4 z-50 flex items-center gap-2 bg-green-600 text-white px-3 py-2 rounded-full shadow-lg transition-all duration-300 ${
+      className={`fixed left-4 bottom-4 z-40 flex items-center gap-2 bg-green-600 text-white px-3 py-2 rounded-full shadow-lg transition-all duration-300 ${
         visible ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0 pointer-events-none'
       }`}
-      style={{ zIndex: 9999 }}
     >
       {/* WhatsApp icon */}
       <a

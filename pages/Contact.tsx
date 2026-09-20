@@ -3,6 +3,7 @@ import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useLanguage } from '../context/LanguageContext';
 import { usePageMeta } from '../hooks/usePageMeta';
+import { contactService } from '../services/contactService';
 
 
 const Contact: React.FC = () => {
@@ -15,11 +16,21 @@ const Contact: React.FC = () => {
         message: ''
     });
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const [sending, setSending] = useState(false);
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // In a real implementation, this would send to a backend endpoint
-        toast.success(t('contact.successMsg'));
-        setFormData({ name: '', email: '', subject: '', message: '' });
+        if (sending) return;
+        setSending(true);
+        try {
+            await contactService.sendMessage(formData);
+            toast.success(t('contact.successMsg'));
+            setFormData({ name: '', email: '', subject: '', message: '' });
+        } catch (err: any) {
+            toast.error(err?.response?.data?.message || 'Failed to send your message. Please try again.');
+        } finally {
+            setSending(false);
+        }
     };
 
     return (
@@ -98,10 +109,11 @@ const Contact: React.FC = () => {
                                 </div>
                                 <button
                                     type="submit"
-                                    className="w-full bg-primary text-white px-8 py-4 text-sm uppercase tracking-widest font-bold hover:bg-sage transition-colors flex items-center justify-center gap-2"
+                                    disabled={sending}
+                                    className="w-full bg-primary text-white px-8 py-4 text-sm uppercase tracking-widest font-bold hover:bg-sage transition-colors flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
                                 >
-                                    <Send className="w-4 h-4" />
-                                    {t('contact.sendMessage')}
+                                    <Send className={`w-4 h-4 ${sending ? 'animate-pulse' : ''}`} />
+                                    {sending ? 'Sending...' : t('contact.sendMessage')}
                                 </button>
                             </form>
                         </div>

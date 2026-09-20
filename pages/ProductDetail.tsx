@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate, useLocation } from 'react-router-dom';
 import { Star, ShieldCheck, Truck, RefreshCw, ShoppingCart, Heart, Share2, ChevronRight, Camera, X } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
@@ -27,6 +27,8 @@ const normalizeProduct = (product: Product): Product => ({
 const ProductDetail: React.FC = () => {
   const { t } = useLanguage();
   const { id } = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   // Dynamic per-product meta title (e.g. "Classic Wooden Wall Clock | WallTimeArts")
   const { addToCart } = useCart();
@@ -455,9 +457,12 @@ const ProductDetail: React.FC = () => {
               {!isLoggedIn && (
                 <div className="bg-gray-50 p-8 rounded-[2.5rem] border border-gray-100 text-center">
                   <p className="text-gray-500 font-bold mb-4">{t('productDetail.shareThoughts')}</p>
-                  <Link to="/login" className="inline-block bg-black text-white px-8 py-3 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-gray-800 transition-all">
+                  <button
+                    onClick={() => navigate(location.pathname, { state: { openLogin: true }, replace: true })}
+                    className="inline-block bg-black text-white px-8 py-3 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-gray-800 transition-all"
+                  >
                     {t('productDetail.signInToReview')}
-                  </Link>
+                  </button>
                 </div>
               )}
 

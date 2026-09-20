@@ -454,7 +454,7 @@ const Header: React.FC<{ onCartOpen: () => void }> = ({ onCartOpen }) => {
 
           <div className="mt-auto pt-6 sm:pt-8 border-t border-primary/10 space-y-4 sm:space-y-6">
             {!isLoggedIn && (
-              <button onClick={() => { setMobileMenuOpen(false); setShowLogin(true); }} className="text-base sm:text-lg font-sans text-primary block flex items-center gap-2">
+              <button onClick={() => { setMobileMenuOpen(false); setShowLogin(true); }} className="text-base sm:text-lg font-sans text-primary flex items-center gap-2">
                 <LogIn className="w-4 h-4 sm:w-5 sm:h-5" />
                 <span>{t('nav.loginRegister')}</span>
               </button>
