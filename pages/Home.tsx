@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import Loader from '../components/common/Loader';
 import { useLanguage } from '../context/LanguageContext';
 import { ScrollHeroSlider, SLIDES } from '../components/sections/Hero3D';
+import Testimonials from '../components/sections/Testimonials';
 import { productService } from '../services/productService';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { useSiteSettings } from '../context/SiteSettingsContext';
@@ -414,6 +415,9 @@ const Home: React.FC = () => {
           ))}
         </div>
       </motion.section>
+
+      {/* CUSTOMER TESTIMONIALS (from /api/testimonials) */}
+      <Testimonials />
 
       {/* STATS FOOTER */}
       <section className="py-16 px-6 bg-sand border-t border-primary/5">

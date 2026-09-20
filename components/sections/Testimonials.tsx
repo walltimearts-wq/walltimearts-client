@@ -65,7 +65,7 @@ const Testimonials: React.FC = () => {
                         What Our Customers Say
                     </h2>
                     <p className="text-base sm:text-lg text-primary/70 max-w-2xl mx-auto px-4">
-                        Discover why thousands choose us for sustainable luxury
+                        Real reviews from wall clock lovers across Pakistan
                     </p>
                 </div>
 
