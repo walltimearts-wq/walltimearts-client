@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const WHATSAPP_NUMBER = '923001234567';
+const WHATSAPP_NUMBER = '923229811525';
 
 const WhatsAppButton: React.FC = () => {
   const [visible, setVisible] = useState(true);
