@@ -219,7 +219,16 @@ const Home: React.FC = () => {
     MOCK_BEST_SELLERS.map(normalizeProduct),
   );
   const [collections, setCollections] = useState<ProductCategory[]>(MOCK_COLLECTIONS);
-  const [slides, setSlides] = useState<typeof SLIDES>(SLIDES);
+  // Product-based hero slides from the API (null = not resolved yet → static SLIDES)
+  const [productSlides, setProductSlides] = useState<typeof SLIDES | null>(null);
+
+  // Derived hero slides. CMS slides (Admin → Content Management → Hero Slides)
+  // always win as soon as they arrive, so every slide image is dynamic —
+  // no race between the site-settings fetch and the data fetch below.
+  //   1. CMS heroSlides  2. Product-based slides  3. Static SLIDES fallback
+  const slides: typeof SLIDES = cmsSlides.length > 0
+    ? (cmsSlides as typeof SLIDES)
+    : productSlides ?? SLIDES;
 
   const [loading, setLoading] = useState(true);
   const [apiAvailable, setApiAvailable] = useState(false);
@@ -269,22 +278,15 @@ const Home: React.FC = () => {
             : MOCK_COLLECTIONS,
         );
 
-        // Hero slides priority:
-        //   1. CMS heroSlides (managed in Admin → Content Management → Hero Slides)
-        //   2. Product-based slides from the API
-        //   3. Static SLIDES fallback (Hero3D.tsx)
-        if (cmsSlides.length > 0) {
-          setSlides(cmsSlides as typeof SLIDES);
-        } else {
-          const apiHasImages = apiProducts.some(
-            (p) => p.image || (p.images && p.images[0]?.url),
-          );
-          setSlides(
-            apiWorking && apiHasImages
-              ? buildSlidesFromProducts(apiProducts)
-              : SLIDES, // fallback to the 3 mock wall clock images
-          );
-        }
+        // Product-based slides (priority 2, used only until/without CMS slides)
+        const apiHasImages = apiProducts.some(
+          (p) => p.image || (p.images && p.images[0]?.url),
+        );
+        setProductSlides(
+          apiWorking && apiHasImages
+            ? buildSlidesFromProducts(apiProducts)
+            : null,
+        );
       } catch (err) {
         console.error('Failed to load home data', err);
       } finally {

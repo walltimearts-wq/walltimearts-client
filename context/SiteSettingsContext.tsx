@@ -60,8 +60,9 @@ const mapCmsSlides = (slides: any[]): CmsHeroSlide[] =>
             id: i,
             tag: s.subtitle || '',
             // CMS stores a plain title + highlight part; render highlight italic like the static slides did
+            // (rendered via dangerouslySetInnerHTML → must use `class`, not `className`)
             title: s.highlight
-                ? `${s.title || ''} <br /><span className="italic text-white/90 font-light">${s.highlight}</span>`
+                ? `${s.title || ''} <br /><span class="italic text-white/90 font-light">${s.highlight}</span>`
                 : s.title || '',
             description: s.description || '',
             image: s.image || '',
