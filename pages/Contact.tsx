@@ -122,7 +122,7 @@ const Contact: React.FC = () => {
                                     </div>
                                     <div>
                                         <h3 className="font-serif font-medium text-primary mb-1">{t('contact.email')}</h3>
-                                        <p className="text-primary/70">support@walltimearts.com</p>
+                                        <p className="text-primary/70">walltimearts@gmail.com</p>
                                         <p className="text-sm text-primary/50 mt-1">{t('contact.responseTime')}</p>
                                     </div>
                                 </div>
@@ -133,7 +133,7 @@ const Contact: React.FC = () => {
                                     </div>
                                     <div>
                                         <h3 className="font-serif font-medium text-primary mb-1">{t('contact.phone')}</h3>
-                                        <p className="text-primary/70">+1 (555) 123-4567</p>
+                                        <p className="text-primary/70">+92 0307 9261677</p>
                                         <p className="text-sm text-primary/50 mt-1">{t('contact.phoneHours')}</p>
                                     </div>
                                 </div>
@@ -159,11 +159,11 @@ const Contact: React.FC = () => {
                                 <div className="space-y-2 text-sm">
                                     <div className="flex justify-between">
                                         <span className="text-primary/70">{t('contact.monFri')}</span>
-                                        <span className="text-primary font-medium">9:00 AM - 6:00 PM</span>
+                                        <span className="text-primary font-medium">9:00 AM - 10:00 PM</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span className="text-primary/70">{t('contact.sat')}</span>
-                                        <span className="text-primary font-medium">10:00 AM - 4:00 PM</span>
+                                        <span className="text-primary font-medium">10:00 AM - 10:00 PM</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span className="text-primary/70">{t('contact.sun')}</span>
