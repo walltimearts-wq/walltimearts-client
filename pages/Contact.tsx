@@ -145,9 +145,9 @@ const Contact: React.FC = () => {
                                     <div>
                                         <h3 className="font-serif font-medium text-primary mb-1">{t('contact.address')}</h3>
                                         <p className="text-primary/70">
-                                            123 Sustainable Street<br />
-                                            San Francisco, CA 94102<br />
-                                            United States
+                                            Ali Steel Enginnering<br />
+                                            Ring Road Duranpur <br />
+                                            Faqir Colony Peshawar
                                         </p>
                                     </div>
                                 </div>
