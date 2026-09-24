@@ -32,7 +32,7 @@ const UserProfile: React.FC = () => {
     city: '',
     state: '',
     postalCode: '',
-    country: 'USA',
+    country: 'Pakistan',
     isDefault: false
   });
 
@@ -468,7 +468,7 @@ const UserProfile: React.FC = () => {
                     <div className="flex items-center justify-between mb-12">
                       <h2 className="text-4xl font-bold text-gray-900 tracking-tighter uppercase">Saved Addresses</h2>
                       <button
-                        onClick={() => { setEditingAddress(null); setAddressFormData({ fullName: '', phoneNumber: '', streetAddress: '', city: '', state: '', postalCode: '', country: 'USA', isDefault: false }); setIsAddressModalOpen(true); }}
+                        onClick={() => { setEditingAddress(null); setAddressFormData({ fullName: '', phoneNumber: '', streetAddress: '', city: '', state: '', postalCode: '', country: 'Pakistan', isDefault: false }); setIsAddressModalOpen(true); }}
                         className="bg-indigo-600 text-white px-6 py-4 rounded-2xl font-bold text-[10px] uppercase tracking-widest flex items-center space-x-3 hover:bg-slate-900 transition-all shadow-xl shadow-indigo-100"
                       >
                         <Plus className="w-4 h-4" />
@@ -758,7 +758,7 @@ const UserProfile: React.FC = () => {
                       type="text"
                       value={addressFormData.postalCode}
                       onChange={e => setAddressFormData({ ...addressFormData, postalCode: e.target.value })}
-                      placeholder="10001"
+                      placeholder="25000"
                       className="w-full bg-gray-50 border-none focus:ring-2 focus:ring-indigo-500 p-4 rounded-2xl outline-none transition-all text-sm font-medium"
                     />
                   </div>
@@ -769,7 +769,7 @@ const UserProfile: React.FC = () => {
                       type="text"
                       value={addressFormData.country}
                       onChange={e => setAddressFormData({ ...addressFormData, country: e.target.value })}
-                      placeholder="USA"
+                      placeholder="Pakistan"
                       className="w-full bg-gray-50 border-none focus:ring-2 focus:ring-indigo-500 p-4 rounded-2xl outline-none transition-all text-sm font-medium"
                     />
                   </div>

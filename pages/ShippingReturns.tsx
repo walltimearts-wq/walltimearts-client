@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Package, Truck, RotateCcw, Shield } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { usePageMeta } from '../hooks/usePageMeta';
+import { shippingService, ShippingSettings } from '../services/shippingService';
 
 const ShippingReturns: React.FC = () => {
     const { t } = useLanguage();
     usePageMeta({ title: 'Shipping & Returns' });
+    const [shippingSettings, setShippingSettings] = useState<ShippingSettings | null>(null);
+
+    // Keep the wording in sync with the delivery fee used at checkout.
+    useEffect(() => {
+        shippingService.getSettings()
+            .then(setShippingSettings)
+            .catch(() => { /* show delivery info without exact fees */ });
+    }, []);
 
     return (
         <div className="bg-sand min-h-screen">
@@ -69,22 +78,30 @@ const ShippingReturns: React.FC = () => {
                                 <div>
                                     <h3 className="text-xl font-serif text-primary mb-3">{t('shipping.domesticTitle')}</h3>
                                     <ul className="space-y-2 text-primary/70">
-                                        <li>• <strong>{t('shipping.standard')}:</strong> 5-7 business days - Rs 9.95 (FREE on orders Rs 150+)</li>
-                                        <li>• <strong>{t('shipping.express')}:</strong> 2-3 business days - Rs 24.95</li>
-                                        <li>• <strong>{t('shipping.nextDay')}:</strong> 1 business day - Rs 39.95</li>
+                                        <li>• <strong>{t('shipping.standard')}:</strong> {t('shipping.standardTime')}</li>
+                                        <li>• <strong>{t('shipping.express')}:</strong> {t('shipping.expressTime')}</li>
+                                        <li>• <strong>{t('shipping.nextDay')}:</strong> {t('shipping.nextDayTime')}</li>
+                                        {shippingSettings && (
+                                            <li>
+                                                • <strong>{t('shipping.deliveryFee')}:</strong> Rs {shippingSettings.shippingFee} - {t('shipping.freeDeliveryOver')} Rs {shippingSettings.freeShippingThreshold}
+                                            </li>
+                                        )}
                                     </ul>
                                 </div>
 
                                 <div>
-                                    <h3 className="text-xl font-serif text-primary mb-3">{t('shipping.intlTitle')}</h3>
-                                    <ul className="space-y-2 text-primary/70">
-                                        <li>• <strong>Canada:</strong> 7-10 business days - Starting at Rs 19.95</li>
-                                        <li>• <strong>Europe:</strong> 10-15 business days - Starting at Rs 29.95</li>
-                                        <li>• <strong>Rest of World:</strong> 12-20 business days - Starting at Rs 39.95</li>
-                                        <li className="mt-4 text-sm italic">
-                                            * International orders may be subject to import duties and taxes, which are the responsibility of the recipient.
-                                        </li>
-                                    </ul>
+                                    <h3 className="text-xl font-serif text-primary mb-3">{t('shipping.coverageTitle')}</h3>
+                                    <p className="text-primary/70 leading-relaxed">{t('shipping.coverageDesc')}</p>
+                                </div>
+
+                                <div>
+                                    <h3 className="text-xl font-serif text-primary mb-3">{t('shipping.couriersTitle')}</h3>
+                                    <p className="text-primary/70 leading-relaxed">{t('shipping.couriersDesc')}</p>
+                                </div>
+
+                                <div>
+                                    <h3 className="text-xl font-serif text-primary mb-3">{t('shipping.codTitle')}</h3>
+                                    <p className="text-primary/70 leading-relaxed">{t('shipping.codDesc')}</p>
                                 </div>
 
                                 <div>
