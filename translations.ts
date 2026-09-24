@@ -275,6 +275,45 @@ export const translations = {
     'terms.fallbackSection3': '3. Limitation of Liability',
     'terms.fallbackSection3Desc': 'WallTimeArts shall not be liable for any direct, indirect, incidental, or consequential damages arising from the use of our products or website.',
 
+    // Policies page (combined)
+    'policies.heroTitle': 'Policies & Customer Service',
+    'policies.heroSubtitle': 'Everything you need to know about shipping, returns, refunds, privacy, terms and how to reach us.',
+    'policies.lastUpdated': 'Last Updated',
+    'policies.onThisPage': 'On this page',
+    'policies.navShipping': 'Shipping Policy',
+    'policies.navReturns': 'Return Policy',
+    'policies.navRefunds': 'Refund Policy',
+    'policies.navPrivacy': 'Privacy Policy',
+    'policies.navTerms': 'Terms & Conditions',
+    'policies.navService': 'Customer Service',
+    'policies.faqTitle': 'FAQs',
+    'policies.faqDesc': 'Browse answers to the questions we get asked most often.',
+    'policies.faqBtn': 'Read FAQs',
+    'policies.helpTitle': 'Still need help?',
+    'policies.helpDesc': 'Our customer service team is happy to assist you.',
+
+    // Refund Policy
+    'refund.title': 'Refund Policy',
+    'refund.intro': 'Once we receive and inspect your returned item, we will notify you by email and process your refund promptly. This policy explains how refunds are issued.',
+    'refund.timelineTitle': 'Refund Timeline',
+    'refund.timelineDesc': 'Approved refunds are issued within 5-7 business days of us receiving your return. Your bank or card provider may need a further 3-5 business days to post the credit.',
+    'refund.methodTitle': 'Refund Method',
+    'refund.methodDesc': 'Refunds are returned to the original payment method used at checkout. If that is not possible, we will issue store credit equal to the refund amount.',
+    'refund.partialTitle': 'Partial Refunds',
+    'refund.partialDesc': 'Original shipping charges are non-refundable. Items returned damaged, used, or missing parts may qualify for a partial refund only.',
+    'refund.lateTitle': 'Missing Your Refund?',
+    'refund.lateDesc': 'If you have not received your refund within 15 business days, please contact our customer service team and we will investigate right away.',
+
+    // Customer Service
+    'service.title': 'Customer Service',
+    'service.desc': 'Our team is here to help with orders, returns, refunds or any product question you may have.',
+    'service.phoneLabel': 'Customer Service Number',
+    'service.emailLabel': 'Email Support',
+    'service.hoursLabel': 'Available Hours',
+    'service.hoursValue': 'Mon-Sat, 9:00 AM - 10:00 PM',
+    'service.call': 'Call Us',
+    'service.email': 'Email Us',
+
     // Cart
     'cart.title': 'Your Cart',
     'cart.items': 'items',
@@ -333,6 +372,9 @@ export const translations = {
     'footer.description': 'Curating distinctive wall clocks for every wall. Crafted with passion, designed to last.',
     'footer.privacyPolicy': 'Privacy Policy',
     'footer.termsOfService': 'Terms of Service',
+    'footer.policies': 'Policies',
+    'footer.customerService': 'Customer Service',
+    'footer.serviceNumber': 'Customer Service Number',
     'footer.allRightsReserved': 'All Rights Reserved.',
 
     // Common/Others (Keeping existing if any)
@@ -623,6 +665,45 @@ export const translations = {
     'terms.fallbackSection3': '3. Ansvarsbegränsning',
     'terms.fallbackSection3Desc': 'WallTimeArts ska inte hållas ansvarigt för några direkta, indirekta, tillfälliga eller följdskador som uppstår till följd av användningen av våra produkter eller webbplats.',
 
+    // Policies page (combined)
+    'policies.heroTitle': 'Policyer & kundtjänst',
+    'policies.heroSubtitle': 'Allt du behöver veta om frakt, returer, återbetalningar, integritet, villkor och hur du når oss.',
+    'policies.lastUpdated': 'Senast uppdaterad',
+    'policies.onThisPage': 'På denna sida',
+    'policies.navShipping': 'Fraktpolicy',
+    'policies.navReturns': 'Returpolicy',
+    'policies.navRefunds': 'Återbetalningspolicy',
+    'policies.navPrivacy': 'Integritetspolicy',
+    'policies.navTerms': 'Villkor',
+    'policies.navService': 'Kundtjänst',
+    'policies.faqTitle': 'Vanliga frågor',
+    'policies.faqDesc': 'Läs svaren på de frågor vi får oftast.',
+    'policies.faqBtn': 'Läs vanliga frågor',
+    'policies.helpTitle': 'Behöver du fortfarande hjälp?',
+    'policies.helpDesc': 'Vårt kundtjänstteam hjälper dig gärna.',
+
+    // Refund Policy
+    'refund.title': 'Återbetalningspolicy',
+    'refund.intro': 'När vi har tagit emot och inspekterat din returnerade artikel meddelar vi dig via e-post och behandlar återbetalningen omgående. Denna policy förklarar hur återbetalningar hanteras.',
+    'refund.timelineTitle': 'Tid för återbetalning',
+    'refund.timelineDesc': 'Godkända återbetalningar utfärdas inom 5-7 arbetsdagar efter att vi mottagit din retur. Din bank eller kortutgivare kan behöva ytterligare 3-5 arbetsdagar för att kreditera beloppet.',
+    'refund.methodTitle': 'Återbetalningsmetod',
+    'refund.methodDesc': 'Återbetalningar sker till den ursprungliga betalningsmetoden som användes vid köpet. Om det inte är möjligt utfärdar vi ett tillgodohavande i butiken motsvarande återbetalningsbeloppet.',
+    'refund.partialTitle': 'Delvisa återbetalningar',
+    'refund.partialDesc': 'Ursprungliga fraktkostnader återbetalas inte. Artiklar som returneras skadade, använda eller med saknade delar kan endast kvalificera för en delvis återbetalning.',
+    'refund.lateTitle': 'Har du inte fått din återbetalning?',
+    'refund.lateDesc': 'Om du inte har fått din återbetalning inom 15 arbetsdagar, vänligen kontakta vårt kundtjänstteam så utreder vi det direkt.',
+
+    // Customer Service
+    'service.title': 'Kundtjänst',
+    'service.desc': 'Vårt team hjälper dig gärna med beställningar, returer, återbetalningar eller frågor om produkter.',
+    'service.phoneLabel': 'Kundtjänstnummer',
+    'service.emailLabel': 'E-postsupport',
+    'service.hoursLabel': 'Tillgängliga tider',
+    'service.hoursValue': 'Mån-lör, 09:00 - 22:00',
+    'service.call': 'Ring oss',
+    'service.email': 'Mejla oss',
+
     // Cart
     'cart.title': 'Din varukorg',
     'cart.items': 'artiklar',
@@ -681,6 +762,9 @@ export const translations = {
     'footer.description': 'Hållbar lyx för det moderna hemmet. Medvetet skapat, etiskt framställt.',
     'footer.privacyPolicy': 'Integritetspolicy',
     'footer.termsOfService': 'Användarvillkor',
+    'footer.policies': 'Policyer',
+    'footer.customerService': 'Kundtjänst',
+    'footer.serviceNumber': 'Kundtjänstnummer',
     'footer.allRightsReserved': 'Alla rättigheter förbehållna.',
 
     // Common/Others

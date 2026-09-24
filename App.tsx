@@ -33,6 +33,7 @@ const ShippingReturns = lazy(() => import('./pages/ShippingReturns'));
 const About = lazy(() => import('./pages/About'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./pages/TermsOfService'));
+const Policies = lazy(() => import('./pages/Policies'));
 
 // Admin Imports
 import AdminRoute from './components/auth/AdminRoute';
@@ -55,7 +56,7 @@ const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import AdDisplayManager from './components/common/AdDisplayManager';
 import CookieConsent from './components/common/CookieConsent';
-import SmoothScroll from './components/common/SmoothScroll';
+import SmoothScroll, { getLenis } from './components/common/SmoothScroll';
 import WhatsAppButton from './components/common/WhatsAppButton';
 
 // Minimal spinner shown during page transitions
@@ -68,6 +69,18 @@ const PageLoader = () => (
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
+    const lenis = getLenis();
+    if (lenis) {
+      // Reset through Lenis so its internal scroll state stays in sync with the
+      // DOM (a raw window.scrollTo leaves Lenis out of sync and breaks scrolling).
+      lenis.scrollTo(0, { immediate: true });
+      // Lazy-loaded pages change the document height after navigation, so let
+      // Lenis recalculate its limit — otherwise you cannot scroll to the bottom.
+      requestAnimationFrame(() => lenis.resize());
+      // Re-check once images/content have had time to lay out.
+      const timer = window.setTimeout(() => lenis.resize(), 400);
+      return () => window.clearTimeout(timer);
+    }
     window.scrollTo(0, 0);
   }, [pathname]);
   return null;
@@ -110,6 +123,7 @@ const AppContent = () => {
             <Route path="/about" element={<About />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/policies" element={<Policies />} />
 
             {/* Auth pages */}
             <Route path="/verify-email" element={<VerifyEmail />} />

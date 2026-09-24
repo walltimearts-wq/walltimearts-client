@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Facebook, Instagram } from 'lucide-react';
+import { Facebook, Instagram, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { contentService } from '../../services/contentService';
 import { productService } from '../../services/productService';
@@ -92,14 +92,33 @@ const Footer: React.FC = () => {
               <li><Link to="/faq" className="text-sand/70 hover:text-white text-sm font-sans transition-colors">{t('footer.faq')}</Link></li>
               <li><Link to="/contact" className="text-sand/70 hover:text-white text-sm font-sans transition-colors">{t('footer.contactUs')}</Link></li>
               <li><Link to="/about" className="text-sand/70 hover:text-white text-sm font-sans transition-colors">{t('footer.aboutUs')}</Link></li>
+              <li><Link to="/policies" className="text-sand/70 hover:text-white text-sm font-sans transition-colors">{t('footer.policies')}</Link></li>
             </ul>
+
+            {/* Customer service number */}
+            <div className="mt-6 pt-6 border-t border-white/5">
+              <p className="text-[10px] uppercase tracking-[0.2em] text-sand/40 font-sans mb-2">
+                {t('footer.serviceNumber')}
+              </p>
+              <a
+                href="tel:+923079261677"
+                className="inline-flex items-center gap-2 text-sand/80 hover:text-white text-sm font-sans transition-colors"
+              >
+                <Phone className="w-4 h-4 text-sage" />
+                +92 0307 9261677
+              </a>
+            </div>
           </div>
         </div>
 
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-sand/40 font-sans">           <p>{`© ${new Date().getFullYear()} ${siteSettings?.siteName || 'WallTimeArts'}. ${t('footer.allRightsReserved')}`}</p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 mt-4 md:mt-0">
+            <Link to="/policies#shipping" className="hover:text-white transition-colors">{t('policies.navShipping')}</Link>
+            <Link to="/policies#returns" className="hover:text-white transition-colors">{t('policies.navReturns')}</Link>
+            <Link to="/policies#refunds" className="hover:text-white transition-colors">{t('policies.navRefunds')}</Link>
             <Link to="/privacy-policy" className="hover:text-white transition-colors">{t('footer.privacyPolicy')}</Link>
             <Link to="/terms-of-service" className="hover:text-white transition-colors">{t('footer.termsOfService')}</Link>
+            <Link to="/policies" className="hover:text-white transition-colors">{t('footer.policies')}</Link>
           </div>
         </div>
       </div>
