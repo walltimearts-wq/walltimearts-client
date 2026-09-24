@@ -5,6 +5,7 @@ import { X, Mail, Lock, Eye, EyeOff, AlertTriangle, RefreshCw } from 'lucide-rea
 import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useLanguage } from '../../context/LanguageContext';
+import { GoogleAuthButton } from './GoogleAuthButton';
 
 interface LoginFormProps {
     onClose: () => void;
@@ -13,13 +14,29 @@ interface LoginFormProps {
 
 export const LoginForm: React.FC<LoginFormProps> = ({ onClose, onSwitchToRegister }) => {
     const { t } = useLanguage();
-    const { login, loading } = useAuth();
+    const { login, loginWithGoogle, loading } = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [localError, setLocalError] = useState('');
     const [emailNotVerified, setEmailNotVerified] = useState(false);
     const [resendLoading, setResendLoading] = useState(false);
+    const [googleLoading, setGoogleLoading] = useState(false);
+
+    const handleGoogleSuccess = async (credential: string) => {
+        setLocalError('');
+        setEmailNotVerified(false);
+        setGoogleLoading(true);
+        try {
+            await loginWithGoogle(credential);
+            onClose();
+        } catch (err: any) {
+            const errorMessage = err.response?.data?.message || err.message || 'Google sign-in failed';
+            setLocalError(errorMessage);
+        } finally {
+            setGoogleLoading(false);
+        }
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -158,6 +175,19 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onClose, onSwitchToRegiste
                         ) : t('auth.login')}
                     </button>
                 </form>
+
+                <div className="flex items-center gap-3 my-5">
+                    <div className="h-px bg-gray-200 flex-1" />
+                    <span className="text-xs text-gray-400 uppercase tracking-wide">{t('auth.orContinueWith')}</span>
+                    <div className="h-px bg-gray-200 flex-1" />
+                </div>
+
+                <GoogleAuthButton
+                    onSuccess={handleGoogleSuccess}
+                    onError={(message) => setLocalError(message || 'Google sign-in failed')}
+                    disabled={loading || googleLoading}
+                    text="continue_with"
+                />
 
                 <div className="mt-6 text-center">
                     <p className="text-gray-500 text-sm">

@@ -24,6 +24,14 @@ export const authService = {
         return response.data.data;
     },
 
+    // Login / register with Google (credential = Google ID token)
+    googleLogin: async (credential: string): Promise<AuthResponse> => {
+        const response = await api.post<ApiResponse<AuthResponse>>('/auth/google', {
+            credential,
+        });
+        return response.data.data;
+    },
+
     // Logout user
     logout: async (): Promise<void> => {
         await api.post('/auth/logout');

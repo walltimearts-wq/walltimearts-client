@@ -136,6 +136,8 @@ export const translations = {
     'auth.linkInvalidTitle': 'Link Expired or Invalid',
     'auth.linkInvalidDesc': 'This verification link has expired or is invalid. Enter your email to get a new one.',
     'auth.enterEmail': 'Enter your email',
+    'auth.orContinueWith': 'or continue with',
+    'auth.continueWithGoogle': 'Continue with Google',
 
     // About
     'about.heroTitle': 'Where Time Becomes Art',
@@ -480,6 +482,8 @@ export const translations = {
     'auth.linkInvalidTitle': 'Länken har upphört att gälla eller är ogiltig',
     'auth.linkInvalidDesc': 'Denna verifieringslänk har upphört att gälla eller är ogiltig. Ange din e-postadress för att få en ny.',
     'auth.enterEmail': 'Ange din e-postadress',
+    'auth.orContinueWith': 'eller fortsätt med',
+    'auth.continueWithGoogle': 'Fortsätt med Google',
 
     // About
     'about.heroTitle': 'Där tiden blir konst',

@@ -10,6 +10,9 @@ import { AuthProvider } from './context/AuthContext';
 import { LanguageProvider } from './context/LanguageContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { SiteSettingsProvider } from './context/SiteSettingsContext';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
+const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID as string | undefined;
 
 // --- Lazy-loaded pages for code splitting (faster initial load) ---
 const Home = lazy(() => import('./pages/Home'));
@@ -144,7 +147,7 @@ const AppContent = () => {
 };
 
 const App = () => {
-  return (
+  const app = (
     <Router>
       <LanguageProvider>
         <ThemeProvider>
@@ -160,6 +163,14 @@ const App = () => {
       </LanguageProvider>
     </Router>
   );
+
+  // Only mount the Google provider when a client id is configured,
+  // so the rest of the app keeps working without it.
+  if (!GOOGLE_CLIENT_ID) {
+    return app;
+  }
+
+  return <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>{app}</GoogleOAuthProvider>;
 };
 
 export default App;

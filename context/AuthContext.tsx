@@ -6,6 +6,7 @@ import { authService } from '../services/authService';
 interface AuthContextType {
   user: User | null;
   login: (email: string, password: string) => Promise<void>;
+  loginWithGoogle: (credential: string) => Promise<void>;
   register: (name: string, email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   refreshUser: () => Promise<void>;
@@ -63,6 +64,26 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
+  const loginWithGoogle = async (credential: string) => {
+    try {
+      setLoading(true);
+      setError(null);
+      const response: AuthResponse = await authService.googleLogin(credential);
+
+      localStorage.setItem('accessToken', response.accessToken);
+      localStorage.setItem('refreshToken', response.refreshToken);
+      localStorage.setItem('user', JSON.stringify(response.user));
+
+      setUser(response.user);
+    } catch (err: any) {
+      const errorMessage = err.response?.data?.message || 'Google sign-in failed';
+      setError(errorMessage);
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const register = async (name: string, email: string, password: string) => {
     try {
       setLoading(true);
@@ -104,7 +125,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, refreshUser, isLoggedIn: !!user, loading, error }}>
+    <AuthContext.Provider value={{ user, login, loginWithGoogle, register, logout, refreshUser, isLoggedIn: !!user, loading, error }}>
       {children}
     </AuthContext.Provider>
   );
