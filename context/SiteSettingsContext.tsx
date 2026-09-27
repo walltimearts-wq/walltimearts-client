@@ -30,7 +30,7 @@ const FALLBACK: SiteSettings = {
     logoUrl: '',
     seoKeywords: '',
     metaTitle: 'WallTimeArts | Distinctive Timepieces & Wall Art',
-    metaDescription: 'Shop handcrafted wall clocks and distinctive timepieces at WallTimeArts. Eco-friendly, artisan-made designs with free shipping on orders over Rs 50.',
+    metaDescription: 'Shop handcrafted wall clocks and artisan timepieces at WallTimeArts. Eco-friendly, made-to-last designs for every room. Free shipping over Rs 50.',
 };
 
 const SiteSettingsContext = createContext<SiteSettingsContextType | undefined>(undefined);

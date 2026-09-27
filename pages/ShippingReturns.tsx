@@ -1,20 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Package, Truck, RotateCcw, Shield } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { usePageMeta } from '../hooks/usePageMeta';
-import { shippingService, ShippingSettings } from '../services/shippingService';
 
 const ShippingReturns: React.FC = () => {
     const { t } = useLanguage();
     usePageMeta({ title: 'Shipping & Returns' });
-    const [shippingSettings, setShippingSettings] = useState<ShippingSettings | null>(null);
-
-    // Keep the wording in sync with the delivery fee used at checkout.
-    useEffect(() => {
-        shippingService.getSettings()
-            .then(setShippingSettings)
-            .catch(() => { /* show delivery info without exact fees */ });
-    }, []);
 
     return (
         <div className="bg-sand min-h-screen">
@@ -81,11 +72,6 @@ const ShippingReturns: React.FC = () => {
                                         <li>• <strong>{t('shipping.standard')}:</strong> {t('shipping.standardTime')}</li>
                                         <li>• <strong>{t('shipping.express')}:</strong> {t('shipping.expressTime')}</li>
                                         <li>• <strong>{t('shipping.nextDay')}:</strong> {t('shipping.nextDayTime')}</li>
-                                        {shippingSettings && (
-                                            <li>
-                                                • <strong>{t('shipping.deliveryFee')}:</strong> Rs {shippingSettings.shippingFee} - {t('shipping.freeDeliveryOver')} Rs {shippingSettings.freeShippingThreshold}
-                                            </li>
-                                        )}
                                     </ul>
                                 </div>
 

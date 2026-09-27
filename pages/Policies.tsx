@@ -17,7 +17,6 @@ import {
 import { useLanguage } from '../context/LanguageContext';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { getLenis } from '../components/common/SmoothScroll';
-import { shippingService, ShippingSettings } from '../services/shippingService';
 import { TranslationKey } from '../translations';
 
 /** Customer service contact details, kept in one place for reuse. */
@@ -45,15 +44,6 @@ const Policies: React.FC = () => {
     const location = useLocation();
     usePageMeta({ title: 'Policies' });
     const [activeSection, setActiveSection] = useState<string>('shipping');
-    const [shippingSettings, setShippingSettings] = useState<ShippingSettings | null>(null);
-
-    // Delivery fee / free-delivery threshold come from the same settings the
-    // checkout uses, so the policy never contradicts what customers are charged.
-    useEffect(() => {
-        shippingService.getSettings()
-            .then(setShippingSettings)
-            .catch(() => { /* fall back to describing delivery without exact fees */ });
-    }, []);
 
     const scrollToSection = useCallback((id: string) => {
         const el = document.getElementById(id);
@@ -151,11 +141,6 @@ const Policies: React.FC = () => {
                                             <li>• <strong>{t('shipping.standard')}:</strong> {t('shipping.standardTime')}</li>
                                             <li>• <strong>{t('shipping.express')}:</strong> {t('shipping.expressTime')}</li>
                                             <li>• <strong>{t('shipping.nextDay')}:</strong> {t('shipping.nextDayTime')}</li>
-                                            {shippingSettings && (
-                                                <li>
-                                                    • <strong>{t('shipping.deliveryFee')}:</strong> Rs {shippingSettings.shippingFee} - {t('shipping.freeDeliveryOver')} Rs {shippingSettings.freeShippingThreshold}
-                                                </li>
-                                            )}
                                         </ul>
                                     </div>
 
